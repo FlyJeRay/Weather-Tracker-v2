@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import "./MainSearcherPage.css";
+import "./searcher_page_styles/MainSearcherPage.css";
+import "./city_weather_block_styles/CityWeatherBlock.css"
 
 interface CityWeatherData {
   currentConditions: {
@@ -40,14 +41,35 @@ interface CityWeatherData {
   status: string
 }
 
+function CityWeatherBlock(props: CityWeatherData) {
+  const wordsArray = props.region.split(',');
+
+  return (
+    <div className="weather_block">
+      <div className="weather_block_data">
+        <h4>{wordsArray[0]}</h4>
+        <p className="weather_hour">{props.currentConditions.dayhour}</p>
+        <p className="weather_temp">{props.currentConditions.temp.c}C / {props.currentConditions.temp.f}F</p>
+      </div>
+      <img className="weather_icon" src={props.currentConditions.iconURL} />
+    </div>
+  )
+}
+
 function MainSearcherPage() {
   const inputReference = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const [weatherData, setWeatherData] = useState<CityWeatherData[]>([]);
 
   useEffect(() => {
-    console.log(weatherData);
+    displayData();
   }, [weatherData]);
+
+  const displayData = () => {
+    return weatherData.map((data_block) => {
+      return <CityWeatherBlock {...data_block}/>
+    })
+  }
 
   const pullWeatherData = async (city: string) => {
     const data = await fetch(`https://weatherdbi.herokuapp.com/data/weather/${city}`);
@@ -55,8 +77,8 @@ function MainSearcherPage() {
 
     let permissionToAddData = true;
 
-    weatherData.map((weather) => {
-      if (weather.region == json.region) {
+    weatherData.forEach((weather) => {
+      if (weather.region === json.region) {
         console.log('already added');
         permissionToAddData = false;
       }
@@ -77,6 +99,11 @@ function MainSearcherPage() {
       <div className="submitting_block">
         <input ref={inputReference} type='text' placeholder="Type in Your City" />
         <button onClick={submitCity}>Submit</button>
+        <div className="weather_container">
+          {
+            displayData()
+          }
+        </div>
       </div>
     </div>
   )

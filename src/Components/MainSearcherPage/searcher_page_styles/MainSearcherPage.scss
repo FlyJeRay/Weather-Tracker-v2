@@ -69,3 +69,15 @@ $phoneWidth: 500px;
     margin: 64px 32px;
   }
 }
+
+.weather_container {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 360px;
+  width: 100%;
+
+  gap: 12px;
+
+  margin-top: 12px;
+}

@@ -1,0 +1,64 @@
+@keyframes slideFromBottom {
+  0% {
+    transform: translateY(+200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.weather_block {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  animation: 1s slideFromBottom;
+  transition: all 0.15s;
+
+  max-width: 360px;
+  width: 100%;
+
+  padding-top: 16px;
+  padding-bottom: 16px;
+
+  background-color: #79DAE8;
+
+  border-radius: 15px;
+  border: 1px solid black;
+
+  .weather_icon {
+    margin-right: 16px;
+    aspect-ratio: 1/1;
+    fill: black;
+  }
+
+  .weather_block_data {
+    h4, p {
+      font-family: Montserrat;
+      margin: 3px;
+      margin-left: 16px;
+    }
+  
+    h4 {
+      margin-bottom: 10px;
+    }
+  
+    .weather_hour {
+      font-size: 14px;
+      font-style: italic;
+    }
+  
+    .weather_temp {
+      font-size: 16px;
+      margin-top: 2px;
+    }
+  }
+  
+  &:hover {
+    background-color: #E8F9FD;
+    cursor: pointer;
+  }
+}
