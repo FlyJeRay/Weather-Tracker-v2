@@ -3,5 +3,6 @@ body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background-color: #E8F9FD;
+  overflow-y: scroll;
 }
 /*# sourceMappingURL=App.css.map */

@@ -39,35 +39,42 @@ interface CityWeatherData {
   region: string,
 
   status: string
-}
-
-function CityWeatherBlock(props: CityWeatherData) {
-  const wordsArray = props.region.split(',');
-
-  return (
-    <div className="weather_block">
-      <div className="weather_block_data">
-        <h4>{wordsArray[0]}</h4>
-        <p className="weather_hour">{props.currentConditions.dayhour}</p>
-        <p className="weather_temp">{props.currentConditions.temp.c}C / {props.currentConditions.temp.f}F</p>
-      </div>
-      <img className="weather_icon" src={props.currentConditions.iconURL} />
-    </div>
-  )
+  drawStatus: string
 }
 
 function MainSearcherPage() {
   const inputReference = useRef() as React.MutableRefObject<HTMLInputElement>;
 
-  const [weatherData, setWeatherData] = useState<CityWeatherData[]>([]);
+  const [weatherData, setWeatherData] = useState<CityWeatherData[]>([]);  
 
   useEffect(() => {
     displayData();
   }, [weatherData]);
 
+  const removeCity = (city: string) => {
+    setWeatherData(weatherData.filter((data) => {
+      return data.region.split(',')[0] !== city;
+    }));
+  }
+
   const displayData = () => {
     return weatherData.map((data_block) => {
-      return <CityWeatherBlock {...data_block}/>
+      const wordsArray = data_block.region.split(',');
+
+      return (
+        <div key={`${wordsArray[0]}_block`} className="weather_block">
+          <div key={`${wordsArray[0]}_data`} className="weather_block_data">
+            <h4>{wordsArray[0]}</h4>
+            <p className="weather_hour">{data_block.currentConditions.dayhour}</p>
+            <p className="weather_comment">{data_block.currentConditions.comment}</p>
+            <p className="weather_temp">{`Temperature: ${data_block.currentConditions.temp.c}C / ${data_block.currentConditions.temp.f}F`}</p>
+            <p className="weather_humidity_precip">{`Humidity: ${data_block.currentConditions.humidity}, Precip: ${data_block.currentConditions.precip}`}</p>
+            <p className="weather_wind">{`Wind: ${data_block.currentConditions.wind.km}kmh`}</p>
+            <button onClick={() => removeCity(wordsArray[0])}>Remove</button>
+          </div>
+          <img className="weather_icon" src={data_block.currentConditions.iconURL} />
+        </div>
+      )
     })
   }
 

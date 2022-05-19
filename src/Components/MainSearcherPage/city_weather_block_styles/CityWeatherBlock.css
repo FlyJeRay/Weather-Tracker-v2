@@ -50,18 +50,27 @@
 
 .weather_block .weather_icon {
   margin-right: 16px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   aspect-ratio: 1/1;
-  fill: black;
 }
 
-.weather_block .weather_block_data h4, .weather_block .weather_block_data p {
+.weather_block .weather_block_data h4, .weather_block .weather_block_data p, .weather_block .weather_block_data button {
   font-family: Montserrat;
   margin: 3px;
   margin-left: 16px;
 }
 
+.weather_block .weather_block_data button {
+  width: 100px;
+  margin-top: 16px;
+  font-style: italic;
+}
+
 .weather_block .weather_block_data h4 {
   margin-bottom: 10px;
+  font-size: 20px;
 }
 
 .weather_block .weather_block_data .weather_hour {
@@ -72,6 +81,15 @@
 .weather_block .weather_block_data .weather_temp {
   font-size: 16px;
   margin-top: 2px;
+}
+
+.weather_block .weather_block_data .weather_comment {
+  margin-bottom: 16px;
+}
+
+.weather_block .weather_block_data .weather_temp, .weather_block .weather_block_data .weather_humidity_precip, .weather_block .weather_block_data .weather_wind {
+  font-size: 14px;
+  font-style: italic;
 }
 
 .weather_block:hover {
