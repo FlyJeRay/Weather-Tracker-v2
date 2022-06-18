@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Weather-Tracker-v2/static/css/main.b45522b6.css",
+    "main.js": "/Weather-Tracker-v2/static/js/main.d0f8a3dc.js",
+    "index.html": "/Weather-Tracker-v2/index.html",
+    "main.b45522b6.css.map": "/Weather-Tracker-v2/static/css/main.b45522b6.css.map",
+    "main.d0f8a3dc.js.map": "/Weather-Tracker-v2/static/js/main.d0f8a3dc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b45522b6.css",
+    "static/js/main.d0f8a3dc.js"
+  ]
+}
